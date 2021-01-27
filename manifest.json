@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "GitLabBoardSummary",
+  "version": "0.1",
+  "description": "Adds a red border to all webpages matching mozilla.org.",
+  "options_page": "options.html",
+  "permissions": ["storage"],
+
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://gitlab.*.com/*/boards"],
+       "js": ["thirdParty/jquery-2.2.4.min.js", "GitLabBoardSummary-new.js"]
+    }
+  ]
+}
