@@ -15,7 +15,7 @@ const COLUMN_NAME_CONTENT_REVIEW = 'Content Review';
 const COLUMN_NAME_CODE_REVIEW = 'Code Review';
 const COLUMN_NAME_PO_REVIEW = 'PO-Review';
 const COLUMN_NAME_CLOSED_THIS_SPRINT = 'Closed this Sprint';
-
+const SUM_SYMBOL = '&#8721;';
 let activeColumns = [
     COLUMN_NAME_SPRINT_BACKLOG,
     COLUMN_NAME_IN_PROGRESS,
@@ -74,7 +74,7 @@ function activateStoryPointsForColumn(columnName) {
     let $secondHeader = $('.board-header.gitlab-board-helper-board-helper[data-column-name="' + columnName + '"]');
 
     let secondHeaderArray = [];
-    secondHeaderArray.push('<div>&#8721; <span data-column-name="' + columnName + '" class="gitlab-board-helper-column-sum"></span></div>');
+    secondHeaderArray.push('<div>' + SUM_SYMBOL + '<span data-column-name="' + columnName + '" class="gitlab-board-helper-column-sum"></span></div>');
     secondHeaderArray.push('<button data-column-name="' + columnName + '" class="gitlab-board-helper-column-refresh-button">aktualisieren</button>');
     $secondHeader.html(secondHeaderArray.join(''));
 
@@ -228,6 +228,7 @@ function addAdditionalCss() {
     additional_css.push('.gitlab-board-helper-column-refresh-button { float: right; top: -20px; position: relative; }');
     additional_css.push('.gitlab-board-helper-column-activate-button { margin-bottom: 15px; }');
     additional_css.push('#gitlab-board-global-bar { font-size: 16pt; margin-left: 15px; display: flex; align-items: center; }');
+    additional_css.push('.gitlab-board-global-bar-item { margin-right: 40px; }');
     additional_css.push('#gitlab-board-helper-global-sum-active { margin-left: 5px; margin-top: 1px; }');
     additional_css.push('#gitlab-board-helper-global-sum-active:after { content: " SP" }');
     $('body').append('<style type="text/css">' + additional_css.join(' ') + '</style>');
@@ -308,15 +309,17 @@ function addRefreshAllButton() {
     $('.title-container ul.navbar-sub-nav').after(
         '' +
         '<button id="gitlab-board-helper-column-refresh-all-button">Alle aktualisieren</button>' +
-        '<div id="gitlab-board-global-bar">Aktiv: <span>&#8721;</span><span id="gitlab-board-helper-global-sum-active"></span> Geschlossen: <span>&#8721;</span><span id="gitlab-board-helper-global-sum-closed"></span></div>'
+        '<div id="gitlab-board-global-bar"><span class="gitlab-board-global-bar-item">Aktiv: <span>' + SUM_SYMBOL + '</span><span id="gitlab-board-helper-global-sum-active"></span></span><span class="gitlab-board-global-bar-item"> Geschlossen: <span>' + SUM_SYMBOL + '</span><span id="gitlab-board-helper-global-sum-closed"></span></span></div>'
     );
 }
 
+// TODO: Function name is bad
+//
 function addRandomValuesToBoardColumns() {
-    console.log('addRandomValuesToBoardColumns');
-    $(columnsToShow).each(function(spaltenIdx, spaltenValue) {
-        $('.board-title-text span.gl-label-text:contains("' + spaltenValue + '")').parent().parent().parent().append('<span class="gitlab-board-helper-story-points" style="margin-left: 10px;">0</span>');
-    });
+    console.log('addRandomValuesToBoardColumns - function is disabled');
+    //$(columnsToShow).each(function(spaltenIdx, spaltenValue) {
+        //$('.board-title-text span.gl-label-text:contains("' + spaltenValue + '")').parent().parent().parent().append('<span class="gitlab-board-helper-story-points" style="margin-left: 10px;">0</span>');
+    //});
 }
 
 function init() {
